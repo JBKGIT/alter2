@@ -7,6 +7,9 @@ const router = express.Router();
 router.get('/', noiseController.getNoiseLogByUserId);
 router.get('/maxDbList', noiseController.getMaxDecibelsForMonth);
 
-router.post('/insert', noiseController.insertNoiseLog);
+
+router.post('/insertNoiseLog', noiseController.insertNoiseLog);
+
+router.delete('/deleteNoiseLog', noiseController.deleteNoiseLog);
 
 module.exports = router;

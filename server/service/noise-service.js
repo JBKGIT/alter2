@@ -3,6 +3,7 @@
 
 const noiseDao = require('../dao/noise-dao');
 
+/* SELECT */
 exports.getNoiseByUserId = async (userId) => {
     // 데이터 처리
     const result = await noiseDao.getNoiseLogByUserId(userId);
@@ -14,13 +15,20 @@ exports.getMaxDecibelsForMonth = async (userId, year, month) => {
     return result;
 }
 
-exports.insertNoiseLog = async (noiseLevel, logTime, location, maxDb, avgDb, userId) => {
-    const result = await noiseDao.insertNoiseLog(noiseLevel, logTime, location, maxDb, avgDb, userId);
+/* INSERT */
+exports.insertNoiseLog = async (noiseLevel, logTime, startTime, endTime, location, maxDb, userId) => {
+    const result = await noiseDao.insertNoiseLog(noiseLevel, logTime, startTime, endTime, location, maxDb, userId);
     return result;
 }
 
+/* DELETE */
 exports.deleteExpiredNoiseLogs = async () => {
     // 데이터 처리 
     const result = await noiseDao.deleteExpiredNoiseLogs();
+    return result;
+}
+
+exports.deleteNoiseLog = async (id) => {
+    const result = await noiseDao.deleteNoiseLog(id);
     return result;
 }
